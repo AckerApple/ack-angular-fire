@@ -8,6 +8,7 @@ import { AckModule } from 'ack-angular/AckModule';
 import { AckFireLoginForm } from "./components/ack-fire-login-form/AckFireLoginForm.component"
 
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from "@angular/fire/auth";
 
 const declarations = [
   AckFireLoginForm
@@ -21,6 +22,7 @@ const declarations = [
     AckFxModule,
     AckModule,
 
+    AngularFireAuthModule,
     AngularFireModule
   ],
   declarations: declarations,
