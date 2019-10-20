@@ -1,0 +1,26 @@
+{
+  "name": "ack-angular-fire",
+  "version": "0.6.0",
+  "description": "Angular to Stripe module containing useful providers, components, and directives",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AckerApple/ack-angular-fire.git"
+  },
+  "keywords": [
+    "stripe",
+    "angular",
+    "credit",
+    "debit",
+    "card",
+    "payment",
+    "gateway"
+  ],
+  "author": "Acker Apple",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AckerApple/ack-angular-fire/issues"
+  },
+  "homepage": "https://github.com/AckerApple/ack-angular-fire#readme"
+}
