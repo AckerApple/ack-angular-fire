@@ -32,6 +32,7 @@ const providers = [FireUser];
     AngularFireModule
   ],
   declarations: declarations,
+  providers: providers,
   exports:[ ...declarations ]
 }) export class Module {
   static forRoot(): ModuleWithProviders {

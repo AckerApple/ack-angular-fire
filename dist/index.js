@@ -43,6 +43,7 @@ var Module = /** @class */ (function () {
                 fire_1.AngularFireModule
             ],
             declarations: declarations,
+            providers: providers,
             exports: declarations.slice()
         })
     ], Module);
