@@ -6,6 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var FireUser_1 = require("./FireUser");
+exports.FireUser = FireUser_1.FireUser;
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var forms_1 = require("@angular/forms");
@@ -14,11 +16,11 @@ var AckModule_1 = require("ack-angular/AckModule");
 var AckFireLoginForm_component_1 = require("./components/ack-fire-login-form/AckFireLoginForm.component");
 var fire_1 = require("@angular/fire");
 var auth_1 = require("@angular/fire/auth");
-var FireUser_1 = require("./FireUser");
+var FireUser_2 = require("./FireUser");
 var declarations = [
     AckFireLoginForm_component_1.AckFireLoginForm
 ];
-var providers = [FireUser_1.FireUser];
+var providers = [FireUser_2.FireUser];
 var Module = /** @class */ (function () {
     function Module() {
     }

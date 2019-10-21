@@ -1,4 +1,6 @@
 export * from "./types"
+export {FireUser} from "./FireUser"
+
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from '@angular/forms';
