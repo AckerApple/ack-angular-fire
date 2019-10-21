@@ -12,7 +12,8 @@
     "watch:templates": "npm run compile:templates -- --watch",
     "watch": "npm-run-all --parallel compile:templates watch:templates watch:js",
     "build": "npm-run-all -s build:dist compile:templates update:dist",
-    "test": "ng test src --browsers PhantomJS --watch=false"
+    "test": "ng test src --browsers PhantomJS --watch=false",
+    "save": "git add . && git commit -m \"quick-save\" && git push"
   },
   "repository": {
     "type": "git",

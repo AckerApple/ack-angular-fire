@@ -14,17 +14,19 @@ var AckModule_1 = require("ack-angular/AckModule");
 var AckFireLoginForm_component_1 = require("./components/ack-fire-login-form/AckFireLoginForm.component");
 var fire_1 = require("@angular/fire");
 var auth_1 = require("@angular/fire/auth");
+var FireUser_1 = require("./FireUser");
 var declarations = [
     AckFireLoginForm_component_1.AckFireLoginForm
 ];
+var providers = [FireUser_1.FireUser];
 var Module = /** @class */ (function () {
     function Module() {
     }
     Module_1 = Module;
     Module.forRoot = function () {
         return {
-            ngModule: Module_1
-            // providers: [],
+            ngModule: Module_1,
+            providers: providers
         };
     };
     var Module_1;

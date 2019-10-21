@@ -10,9 +10,13 @@ import { AckFireLoginForm } from "./components/ack-fire-login-form/AckFireLoginF
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
+import { FireUser } from "./FireUser";
+
 const declarations = [
   AckFireLoginForm
 ]
+
+const providers = [FireUser];
 
 @NgModule({
   imports:[
@@ -30,8 +34,8 @@ const declarations = [
 }) export class Module {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: Module
-      // providers: [],
+      ngModule: Module,
+      providers: providers
     }
   }
 }
