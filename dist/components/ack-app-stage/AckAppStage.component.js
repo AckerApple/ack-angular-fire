@@ -17,18 +17,15 @@ var ack_app_stage_template_1 = require("./ack-app-stage.template");
 var ack_angular_fx_1 = require("ack-angular-fx");
 var AckAppStage = /** @class */ (function () {
     function AckAppStage(Router, RouteHistory, ActivatedRoute) {
-        var _this = this;
         this.Router = Router;
         this.RouteHistory = RouteHistory;
         this.ActivatedRoute = ActivatedRoute;
         this.subs = new Subscription_1.Subscription();
-        this.subs.add(this.Router.events.subscribe(function (event) {
-            if (event.constructor == router_1.NavigationEnd) {
-                var active = _this.ActivatedRoute;
-                _this.showBack = active && active.routeConfig && (!active.routeConfig.data || active.routeConfig.data.back == null || active.routeConfig.data.back);
-            }
-        }));
     }
+    AckAppStage.prototype.onRouteChange = function (RouteWatchReporter) {
+        var active = RouteWatchReporter.activatedRoute;
+        this.showBack = active && active.routeConfig && (!active.routeConfig.data || active.routeConfig.data.back == null || active.routeConfig.data.back);
+    };
     AckAppStage.prototype.ngOnDestroy = function () {
         this.subs.unsubscribe();
     };

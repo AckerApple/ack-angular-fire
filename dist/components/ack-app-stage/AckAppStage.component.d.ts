@@ -1,3 +1,4 @@
+import { RouteWatchReporter } from "ack-angular/RouteWatchReporter";
 import { Subscription } from "rxjs/internal/Subscription";
 import { ElementRef, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -16,5 +17,6 @@ export declare class AckAppStage {
     subs: Subscription;
     showBack: boolean;
     constructor(Router: Router, RouteHistory: RouteHistory, ActivatedRoute: ActivatedRoute);
+    onRouteChange(RouteWatchReporter: RouteWatchReporter): void;
     ngOnDestroy(): void;
 }

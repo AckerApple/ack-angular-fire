@@ -1,7 +1,9 @@
+import { RouteWatchReporter } from "ack-angular/RouteWatchReporter"
 import { Subscription } from "rxjs/internal/Subscription"
 import { Input, Component, ContentChild, ElementRef, TemplateRef } from '@angular/core'
 import {
-  Router, ActivatedRoute, NavigationEnd
+  Router, ActivatedRoute
+  //, NavigationEnd
 } from '@angular/router'
 import { RouteHistory } from 'ack-angular/modules/router/RouteHistory.provider';
 
@@ -27,16 +29,13 @@ export class AckAppStage {
     public Router: Router,
     public RouteHistory: RouteHistory,
     public ActivatedRoute: ActivatedRoute
-  ) {
-    this.subs.add(
-      this.Router.events.subscribe(event=>{
-        if(event.constructor==NavigationEnd){
-          const active = this.ActivatedRoute;
-          this.showBack = active && active.routeConfig && (!active.routeConfig.data || active.routeConfig.data.back==null ||  active.routeConfig.data.back)
-        }
-      })
-    )
+  ) {}
+
+  onRouteChange(RouteWatchReporter: RouteWatchReporter) {
+    const active = RouteWatchReporter.activatedRoute
+    this.showBack = active && active.routeConfig && (!active.routeConfig.data || active.routeConfig.data.back==null ||  active.routeConfig.data.back)
   }
+
 
   ngOnDestroy(){
     this.subs.unsubscribe();
