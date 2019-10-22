@@ -13,12 +13,12 @@ import { animations } from "ack-angular-fx"
   animations:animations
 })
 export class AckAppStage {
-  @Input() debug:boolean
-  @Input() debugs:{[index:string]: any}
-  @ContentChild("headerPrepend", { static: false }) headerPrepend:TemplateRef<ElementRef>
-  @ContentChild("headerAppend", { static: false }) headerAppend:TemplateRef<ElementRef>
+  @Input() debug!:boolean
+  @Input() debugs!:{[index:string]: any}
+  @ContentChild("headerPrepend", { static: false }) headerPrepend!:TemplateRef<ElementRef>
+  @ContentChild("headerAppend", { static: false }) headerAppend!:TemplateRef<ElementRef>
   
-  screenScrollModelY: number;
+  screenScrollModelY!: number;
   
   constructor(
     public Router: Router,
