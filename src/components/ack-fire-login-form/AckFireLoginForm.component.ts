@@ -14,7 +14,7 @@ interface localUser extends user{
 @Component({
   selector:'ack-fire-login-form',
   template: string,
-  animations:animations
+  animations: animations
 }) export class AckFireLoginForm {
   submitCount:number = 0
   loadCount:number = 0

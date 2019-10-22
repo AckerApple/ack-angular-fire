@@ -26,7 +26,7 @@ table.height-full.width-full.bg-fade(
 
           .flex-valign-center.pad-right.pad-left.height-50
             a.pos-abs(
-              *ngIf="router.activated?.routeConfig"
+              *ngIf="showBack"
               "[routerLink]"="RouteHistory.back || '../'"
             )
               i.fas.fa-chevron-left.fa-lg.text-white

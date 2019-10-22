@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var Subscription_1 = require("rxjs/internal/Subscription");
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var RouteHistory_provider_1 = require("ack-angular/modules/router/RouteHistory.provider");
@@ -16,10 +17,21 @@ var ack_app_stage_template_1 = require("./ack-app-stage.template");
 var ack_angular_fx_1 = require("ack-angular-fx");
 var AckAppStage = /** @class */ (function () {
     function AckAppStage(Router, RouteHistory, ActivatedRoute) {
+        var _this = this;
         this.Router = Router;
         this.RouteHistory = RouteHistory;
         this.ActivatedRoute = ActivatedRoute;
+        this.subs = new Subscription_1.Subscription();
+        this.subs.add(this.Router.events.subscribe(function (event) {
+            if (event.constructor == router_1.NavigationEnd) {
+                var active = _this.ActivatedRoute;
+                _this.showBack = active && active.routeConfig && (!active.routeConfig.data || active.routeConfig.data.back == null || active.routeConfig.data.back);
+            }
+        }));
     }
+    AckAppStage.prototype.ngOnDestroy = function () {
+        this.subs.unsubscribe();
+    };
     __decorate([
         core_1.Input(),
         __metadata("design:type", Boolean)

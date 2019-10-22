@@ -1,8 +1,8 @@
 export * from "./types"
 export {FireUser} from "./FireUser"
 
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
+// import { BrowserModule } from "@angular/platform-browser";
+// import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from '@angular/forms';
@@ -30,8 +30,8 @@ const providers = [FireUser];
     CommonModule,
     FormsModule,
 
-    BrowserModule,
-    BrowserAnimationsModule,
+    // BrowserModule,
+    // BrowserAnimationsModule,
 
     AckFxModule,
     AckModule,
