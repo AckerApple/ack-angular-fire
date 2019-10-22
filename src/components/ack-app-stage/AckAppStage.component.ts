@@ -32,8 +32,9 @@ export class AckAppStage {
   ) {}
 
   onRouteChange(RouteWatchReporter: RouteWatchReporter) {
-    const active = RouteWatchReporter.activatedRoute
-    this.showBack = active && active.routeConfig && (!active.routeConfig.data || active.routeConfig.data.back==null ||  active.routeConfig.data.back)
+    const active = RouteWatchReporter.getCurrent();
+    const config = active.routeConfig || active.config;
+    this.showBack = config==null || (!config.data || config.data.back == null || config.data.back)
   }
 
 
