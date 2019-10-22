@@ -8,8 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var FireUser_1 = require("./FireUser");
 exports.FireUser = FireUser_1.FireUser;
-var core_1 = require("@angular/core");
+var platform_browser_1 = require("@angular/platform-browser");
 var animations_1 = require("@angular/platform-browser/animations");
+var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var forms_1 = require("@angular/forms");
 var ack_angular_fx_1 = require("ack-angular-fx");
@@ -41,6 +42,7 @@ var Module = /** @class */ (function () {
             imports: [
                 common_1.CommonModule,
                 forms_1.FormsModule,
+                platform_browser_1.BrowserModule,
                 animations_1.BrowserAnimationsModule,
                 ack_angular_fx_1.AckFxModule,
                 AckModule_1.AckModule,
