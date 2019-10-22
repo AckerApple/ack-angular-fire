@@ -17,8 +17,10 @@ var AckFireLoginForm_component_1 = require("./components/ack-fire-login-form/Ack
 var fire_1 = require("@angular/fire");
 var auth_1 = require("@angular/fire/auth");
 var FireUser_2 = require("./FireUser");
+var AckAppStage_component_1 = require("./components/ack-app-stage/AckAppStage.component");
 var declarations = [
-    AckFireLoginForm_component_1.AckFireLoginForm
+    AckFireLoginForm_component_1.AckFireLoginForm,
+    AckAppStage_component_1.AckAppStage
 ];
 var providers = [FireUser_2.FireUser];
 var Module = /** @class */ (function () {
