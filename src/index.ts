@@ -13,9 +13,11 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { FireUser } from "./FireUser";
+import { AckAppStage } from "./components/ack-app-stage/AckAppStage.component"
 
 const declarations = [
-  AckFireLoginForm
+  AckFireLoginForm,
+  AckAppStage
 ]
 
 const providers = [FireUser];
