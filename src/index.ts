@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AckFxModule } from 'ack-angular-fx';
 import { AckModule } from 'ack-angular/AckModule';
+import { AckRouterModule } from "ack-angular/AckRouterModule"
 import { AckFireLoginForm } from "./components/ack-fire-login-form/AckFireLoginForm.component"
 
 import { AngularFireModule } from '@angular/fire';
@@ -29,6 +30,7 @@ const providers = [FireUser];
 
     AckFxModule,
     AckModule,
+    AckRouterModule,
 
     AngularFireAuthModule,
     AngularFireModule

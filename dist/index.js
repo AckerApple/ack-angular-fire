@@ -13,6 +13,7 @@ var common_1 = require("@angular/common");
 var forms_1 = require("@angular/forms");
 var ack_angular_fx_1 = require("ack-angular-fx");
 var AckModule_1 = require("ack-angular/AckModule");
+var AckRouterModule_1 = require("ack-angular/AckRouterModule");
 var AckFireLoginForm_component_1 = require("./components/ack-fire-login-form/AckFireLoginForm.component");
 var fire_1 = require("@angular/fire");
 var auth_1 = require("@angular/fire/auth");
@@ -41,6 +42,7 @@ var Module = /** @class */ (function () {
                 forms_1.FormsModule,
                 ack_angular_fx_1.AckFxModule,
                 AckModule_1.AckModule,
+                AckRouterModule_1.AckRouterModule,
                 auth_1.AngularFireAuthModule,
                 fire_1.AngularFireModule
             ],
