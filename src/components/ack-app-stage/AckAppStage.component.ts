@@ -33,7 +33,7 @@ export class AckAppStage {
 
   onRouteChange(RouteWatchReporter: RouteWatchReporter) {
     const active = RouteWatchReporter.getCurrent();
-    const config = active.routeConfig || active.config;
+    const config = active.config;
     this.showBack = config==null || (!config.data || config.data.back == null || config.data.back)
   }
 

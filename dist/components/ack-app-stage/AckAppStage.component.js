@@ -23,8 +23,9 @@ var AckAppStage = /** @class */ (function () {
         this.subs = new Subscription_1.Subscription();
     }
     AckAppStage.prototype.onRouteChange = function (RouteWatchReporter) {
-        var active = RouteWatchReporter.activatedRoute;
-        this.showBack = active && active.routeConfig && (!active.routeConfig.data || active.routeConfig.data.back == null || active.routeConfig.data.back);
+        var active = RouteWatchReporter.getCurrent();
+        var config = active.config;
+        this.showBack = config == null || (!config.data || config.data.back == null || config.data.back);
     };
     AckAppStage.prototype.ngOnDestroy = function () {
         this.subs.unsubscribe();
