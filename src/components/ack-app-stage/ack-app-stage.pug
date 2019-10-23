@@ -41,7 +41,7 @@ table.height-full.width-full.bg-fade(
       "[activatedRoute]" = "fx.loaded && outlet.activated ? outlet.activatedRoute : null"
     )
     tr
-      td.height-full.pos-rel.text-white.height-full-router-wrap(
+      td.height-full.pos-rel.height-full-router-wrap(
         valign = "top"
         "[ngClass]" = "{'overflow-hidden pos-abs-kids':fx.inFx}"
         "[@slideInOutLeftKids]"    = "{value:fx.id,params:{time:'250ms'}}"
