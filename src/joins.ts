@@ -18,8 +18,8 @@ export function leftJoin(
   field: string,
   collection: string,
   limit = 100
-): (source: any) => any {
-  return (source: any) =>
+): (source: Observable<AngularFirestoreCollection[]>) => Observable<unknown> {
+  return (source: Observable<AngularFirestoreCollection[]>) =>
     defer(() => {
       // Operator state
       let collectionData: AngularFirestoreCollection[];
