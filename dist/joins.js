@@ -13,33 +13,32 @@ var __assign = (this && this.__assign) || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var rxjs_1 = require("rxjs");
 var operators_1 = require("rxjs/operators");
-function leftJoin(afs, field, collection, limit) {
+function leftJoin(afs, fieldFrom, fieldTo, collection, limit) {
     if (limit === void 0) { limit = 100; }
     return function (source) {
         return rxjs_1.defer(function () {
             // Operator state
-            var collectionData;
+            var sourceCollection;
             return source.pipe(operators_1.switchMap(function (data) {
-                collectionData = data;
+                sourceCollection = data;
                 var reads$ = [];
                 var _loop_1 = function (doc) {
-                    // Push doc read to Array
-                    if (doc[field]) {
+                    if (doc[fieldFrom]) {
                         // Perform query on join key, with optional limit
-                        var q = function (ref) { return ref.where(field, '==', doc[field]).limit(limit); };
+                        var q = function (ref) { return ref.where(fieldTo, '==', doc[fieldFrom]).limit(limit); };
                         reads$.push(afs.collection(collection, q).valueChanges());
                     }
                     else {
                         reads$.push(rxjs_1.of([]));
                     }
                 };
-                for (var _i = 0, collectionData_1 = collectionData; _i < collectionData_1.length; _i++) {
-                    var doc = collectionData_1[_i];
+                for (var _i = 0, sourceCollection_1 = sourceCollection; _i < sourceCollection_1.length; _i++) {
+                    var doc = sourceCollection_1[_i];
                     _loop_1(doc);
                 }
                 return rxjs_1.combineLatest(reads$);
             }), operators_1.map(function (joins) {
-                return collectionData.map(function (v, i) {
+                return sourceCollection.map(function (v, i) {
                     var _a;
                     return __assign({}, v, (_a = {}, _a[collection] = joins[i] || null, _a));
                 });
@@ -49,7 +48,7 @@ function leftJoin(afs, field, collection, limit) {
 }
 exports.leftJoin = leftJoin;
 ;
-exports.leftJoinDocument = function (afs, field, collection, asName) {
+function leftJoinDocument(afs, field, collection, asName) {
     return function (source) {
         return rxjs_1.defer(function () {
             // Operator state
@@ -62,8 +61,8 @@ exports.leftJoinDocument = function (afs, field, collection, asName) {
                 collectionData = data;
                 var reads$ = [];
                 var i = 0;
-                for (var _i = 0, collectionData_2 = collectionData; _i < collectionData_2.length; _i++) {
-                    var doc = collectionData_2[_i];
+                for (var _i = 0, collectionData_1 = collectionData; _i < collectionData_1.length; _i++) {
+                    var doc = collectionData_1[_i];
                     // Skip if doc field does not exist or is already in cache
                     if (!doc[field] || cache.get(doc[field])) {
                         continue;
@@ -86,7 +85,9 @@ exports.leftJoinDocument = function (afs, field, collection, asName) {
             }));
         });
     };
-};
+}
+exports.leftJoinDocument = leftJoinDocument;
+;
 exports.docJoin = function (afs, paths) {
     return function (source) {
         return rxjs_1.defer(function () {
