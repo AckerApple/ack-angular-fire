@@ -1,6 +1,6 @@
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-export declare function leftJoin(afs: AngularFirestore, field: string, collection: string, limit?: number): (source: Observable<any>) => void;
+export declare function leftJoin(afs: AngularFirestore, field: string, collection: string, limit?: number): (source: any) => any;
 export declare const leftJoinDocument: (afs: AngularFirestore, field: string, collection: string, asName?: string | undefined) => (source: Observable<AngularFirestoreCollection<import("firebase").firestore.DocumentData>[]>) => Observable<{
     ref: import("firebase").firestore.CollectionReference;
 }[]>;

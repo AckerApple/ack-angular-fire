@@ -1,6 +1,9 @@
-import { DocumentData, AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {
+  
+  DocumentData, AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import {
+  // OperatorFunction,
   combineLatest, Observable,
   //pipe,
   of, defer
@@ -15,8 +18,8 @@ export function leftJoin(
   field: string,
   collection: string,
   limit = 100
-): (source: Observable<any>) => void {
-  return (source) =>
+): (source: any) => any {
+  return (source: any) =>
     defer(() => {
       // Operator state
       let collectionData: AngularFirestoreCollection[];
