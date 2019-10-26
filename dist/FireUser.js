@@ -33,6 +33,9 @@ var FireUser = /** @class */ (function () {
             _this.login.emit(user);
         }));
     };
+    FireUser.prototype.logoutNow = function () {
+        this.AngularFireAuth.auth.signOut();
+    };
     FireUser = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [auth_1.AngularFireAuth])

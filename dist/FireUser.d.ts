@@ -9,4 +9,5 @@ export declare class FireUser {
     constructor(AngularFireAuth: AngularFireAuth);
     ngOnDestroy(): void;
     private monitorFirebase;
+    logoutNow(): void;
 }
