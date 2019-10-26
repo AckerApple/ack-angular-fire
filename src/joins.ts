@@ -15,26 +15,25 @@ import {
 
 export function leftJoin(
   afs: AngularFirestore,
-  field: string,
+  fieldFrom: string,
+  fieldTo: string,
   collection: string,
   limit = 100
 ): (source: Observable<AngularFirestoreCollection[]>) => Observable<unknown> {
   return (source: Observable<AngularFirestoreCollection[]>) =>
     defer(() => {
       // Operator state
-      let collectionData: AngularFirestoreCollection[];
+      let sourceCollection: AngularFirestoreCollection[];
 
       return source.pipe(
-        switchMap(data => {
-          collectionData = data as any[];
+        switchMap((data: AngularFirestoreCollection[]) => {
+          sourceCollection = data;
 
           const reads$ = [];
-          for (const doc of collectionData) {
-            // Push doc read to Array
-
-            if (doc[field]) {
+          for (const doc of sourceCollection) {
+            if (doc[fieldFrom]) {
               // Perform query on join key, with optional limit
-              const q = (ref: any) => ref.where(field, '==', doc[field]).limit(limit);
+              const q = (ref: any) => ref.where(fieldTo, '==', doc[fieldFrom]).limit(limit);
 
               reads$.push(afs.collection(collection, q).valueChanges());
             } else {
@@ -45,7 +44,7 @@ export function leftJoin(
           return combineLatest(reads$);
         }),
         map((joins: any[]) => {
-          return collectionData.map((v, i) => {
+          return sourceCollection.map((v, i) => {
             return { ...v, [collection]: joins[i] || null };
           });
         })
@@ -53,12 +52,12 @@ export function leftJoin(
     });
 };
 
-export const leftJoinDocument = (
+export function leftJoinDocument(
   afs: AngularFirestore,
   field:string,
   collection:string,
   asName?:string
-) => {
+): (source: Observable<AngularFirestoreCollection[]>) => Observable<unknown>{
   return (source: Observable<AngularFirestoreCollection[]>) =>
     defer(() => {
       // Operator state
