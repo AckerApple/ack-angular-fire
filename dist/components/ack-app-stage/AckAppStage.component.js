@@ -39,6 +39,10 @@ var AckAppStage = /** @class */ (function () {
         __metadata("design:type", Object)
     ], AckAppStage.prototype, "debugs", void 0);
     __decorate([
+        core_1.ContentChild("header", { static: false }),
+        __metadata("design:type", core_1.TemplateRef)
+    ], AckAppStage.prototype, "header", void 0);
+    __decorate([
         core_1.ContentChild("headerPrepend", { static: false }),
         __metadata("design:type", core_1.TemplateRef)
     ], AckAppStage.prototype, "headerPrepend", void 0);

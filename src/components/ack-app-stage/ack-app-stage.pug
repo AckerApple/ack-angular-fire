@@ -24,16 +24,19 @@ table.height-full.width-full.bg-fade(
         )
           ng-container(*ngTemplateOutlet="headerPrepend")
 
-          .flex-valign-center.pad-right.pad-left.height-50
-            a.pos-abs(
-              *ngIf="showBack"
-              "[routerLink]"="RouteHistory.back || '../'"
-            )
-              i.fas.fa-chevron-left.fa-lg.text-white
-            .flex-1.text-center.pad-h-3x.text-3x.text-overflow
-              i("[ngClass]"="router.activated?.routeConfig?.data?.icon")
-              |&nbsp;{{ router.activated?.routeConfig?.data?.title }}
-            ng-container(*ngTemplateOutlet="headerAppend")
+          ng-container(*ngTemplateOutlet="header; else titleByRoute")
+
+          ng-template(#titleByRoute="")
+            .flex-valign-center.pad-right.pad-left.height-50
+              a.pos-abs(
+                *ngIf="showBack"
+                "[routerLink]"="RouteHistory.back || '../'"
+              )
+                i.fas.fa-chevron-left.fa-lg.text-white
+              .flex-1.text-center.pad-h-3x.text-3x.text-overflow
+                i("[ngClass]"="router.activated?.routeConfig?.data?.icon")
+                |&nbsp;{{ router.activated?.routeConfig?.data?.title }}
+              ng-container(*ngTemplateOutlet="headerAppend")
 
         .height-50
     fx-tracker(
@@ -41,7 +44,7 @@ table.height-full.width-full.bg-fade(
       "[activatedRoute]" = "fx.loaded && outlet.activated ? outlet.activatedRoute : null"
     )
     tr
-      td.height-full.pos-rel.height-full-router-wrap.child-last-height-full.child-last-block(
+      td.pos-rel.height-full-router-wrap.child-last-height-full.child-last-block(
         id = "ack-app-stage-router-wrap"
         valign = "top"
         "[ngClass]" = "{'overflow-hidden pos-abs-kids':fx.inFx}"

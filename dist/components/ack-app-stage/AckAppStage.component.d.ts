@@ -11,6 +11,7 @@ export declare class AckAppStage {
     debugs: {
         [index: string]: any;
     };
+    header: TemplateRef<ElementRef>;
     headerPrepend: TemplateRef<ElementRef>;
     headerAppend: TemplateRef<ElementRef>;
     screenScrollModelY: number;

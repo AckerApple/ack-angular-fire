@@ -18,6 +18,8 @@ import { animations } from "ack-angular-fx"
 export class AckAppStage {
   @Input() debug!:boolean
   @Input() debugs!:{[index:string]: any}
+  
+  @ContentChild("header", { static: false }) header!:TemplateRef<ElementRef>
   @ContentChild("headerPrepend", { static: false }) headerPrepend!:TemplateRef<ElementRef>
   @ContentChild("headerAppend", { static: false }) headerAppend!:TemplateRef<ElementRef>
   
