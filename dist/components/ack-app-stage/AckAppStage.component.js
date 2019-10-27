@@ -50,7 +50,10 @@ var AckAppStage = /** @class */ (function () {
         core_1.Component({
             selector: 'ack-app-stage',
             template: ack_app_stage_template_1.string,
-            animations: ack_angular_fx_1.animations
+            animations: ack_angular_fx_1.animations,
+            styles: [
+                "#ack-app-stage-router-wrap ng-component {height:100%;display:block;width:100%}"
+            ]
         }),
         __metadata("design:paramtypes", [router_1.Router,
             RouteHistory_provider_1.RouteHistory,
