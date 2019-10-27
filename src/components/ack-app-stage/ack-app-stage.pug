@@ -1,5 +1,3 @@
-style.
-  #ack-app-stage-router-wrap ng-component {height:100%;display:block;width:100%}
 ack-fixed-element-stage
 
 route-reporter(#router="RouteReporter" "(onChange)"="onRouteChange($event)")
@@ -43,7 +41,7 @@ table.height-full.width-full.bg-fade(
       "[activatedRoute]" = "fx.loaded && outlet.activated ? outlet.activatedRoute : null"
     )
     tr
-      td.height-full.pos-rel.height-full-router-wrap(
+      td.height-full.pos-rel.height-full-router-wrap.child-last-height-full.child-last-block(
         id = "ack-app-stage-router-wrap"
         valign = "top"
         "[ngClass]" = "{'overflow-hidden pos-abs-kids':fx.inFx}"
