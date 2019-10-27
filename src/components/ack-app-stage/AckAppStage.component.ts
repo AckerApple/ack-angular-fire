@@ -13,10 +13,7 @@ import { animations } from "ack-angular-fx"
 @Component({
   selector: 'ack-app-stage',
   template: string,
-  animations: animations,
-  styles:[
-    "#ack-app-stage-router-wrap ng-component {height:100%;display:block;width:100%}"
-  ]
+  animations: animations
 })
 export class AckAppStage {
   @Input() debug!:boolean
