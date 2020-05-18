@@ -18,9 +18,11 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { FireUser } from "./FireUser";
 import { FirebaseApp } from "./injectables/Firebase.app";
+import { AngularFirestoreStorageUrl } from "./pipes/ngFirebaseStorageUrl";
 import { AckAppStage } from "./components/ack-app-stage/AckAppStage.component"
 
 const declarations = [
+  AngularFirestoreStorageUrl,
   AckFireLoginForm,
   AckAppStage
 ]

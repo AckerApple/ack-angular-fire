@@ -23,8 +23,10 @@ var fire_1 = require("@angular/fire");
 var auth_1 = require("@angular/fire/auth");
 var FireUser_2 = require("./FireUser");
 var Firebase_app_2 = require("./injectables/Firebase.app");
+var ngFirebaseStorageUrl_1 = require("./pipes/ngFirebaseStorageUrl");
 var AckAppStage_component_1 = require("./components/ack-app-stage/AckAppStage.component");
 var declarations = [
+    ngFirebaseStorageUrl_1.AngularFirestoreStorageUrl,
     AckFireLoginForm_component_1.AckFireLoginForm,
     AckAppStage_component_1.AckAppStage
 ];
