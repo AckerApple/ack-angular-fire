@@ -5,4 +5,5 @@ export interface user {
     lastLogin?: number;
     photoUrl?: string;
     trusted?: boolean;
+    displayName?: string;
 }

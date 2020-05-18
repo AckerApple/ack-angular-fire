@@ -1,5 +1,6 @@
 export * from "./types"
-export {FireUser} from "./FireUser"
+export { FireUser } from "./FireUser"
+export { FirebaseApp } from "./injectables/Firebase.app";
 
 // import { BrowserModule } from "@angular/platform-browser";
 // import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
@@ -16,6 +17,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { FireUser } from "./FireUser";
+import { FirebaseApp } from "./injectables/Firebase.app";
 import { AckAppStage } from "./components/ack-app-stage/AckAppStage.component"
 
 const declarations = [
@@ -23,10 +25,10 @@ const declarations = [
   AckAppStage
 ]
 
-const providers = [FireUser];
+const providers = [FireUser, FirebaseApp];
 
 @NgModule({
-  imports:[
+  imports: [
     CommonModule,
     FormsModule,
 
@@ -42,7 +44,7 @@ const providers = [FireUser];
   ],
   declarations: declarations,
   providers: providers,
-  exports:[ ...declarations ]
+  exports: [...declarations]
 }) export class Module {
   static forRoot(): ModuleWithProviders {
     return {

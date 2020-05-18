@@ -39,7 +39,6 @@ export class AckAppStage {
     this.showBack = config==null || (!config.data || config.data.back == null || config.data.back)
   }
 
-
   ngOnDestroy(){
     this.subs.unsubscribe();
   }

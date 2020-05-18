@@ -8,6 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var FireUser_1 = require("./FireUser");
 exports.FireUser = FireUser_1.FireUser;
+var Firebase_app_1 = require("./injectables/Firebase.app");
+exports.FirebaseApp = Firebase_app_1.FirebaseApp;
 // import { BrowserModule } from "@angular/platform-browser";
 // import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 var core_1 = require("@angular/core");
@@ -20,12 +22,13 @@ var AckFireLoginForm_component_1 = require("./components/ack-fire-login-form/Ack
 var fire_1 = require("@angular/fire");
 var auth_1 = require("@angular/fire/auth");
 var FireUser_2 = require("./FireUser");
+var Firebase_app_2 = require("./injectables/Firebase.app");
 var AckAppStage_component_1 = require("./components/ack-app-stage/AckAppStage.component");
 var declarations = [
     AckFireLoginForm_component_1.AckFireLoginForm,
     AckAppStage_component_1.AckAppStage
 ];
-var providers = [FireUser_2.FireUser];
+var providers = [FireUser_2.FireUser, Firebase_app_2.FirebaseApp];
 var Module = /** @class */ (function () {
     function Module() {
     }
