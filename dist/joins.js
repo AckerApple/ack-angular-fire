@@ -40,7 +40,7 @@ function leftJoin(afs, fieldFrom, fieldTo, collection, limit) {
             }), operators_1.map(function (joins) {
                 return sourceCollection.map(function (v, i) {
                     var _a;
-                    return __assign({}, v, (_a = {}, _a[collection] = joins[i] || null, _a));
+                    return __assign(__assign({}, v), (_a = {}, _a[collection] = joins[i] || null, _a));
                 });
             }));
         });
@@ -80,7 +80,7 @@ function leftJoinDocument(afs, field, collection, asName) {
                 return collectionData.map(function (v, i) {
                     var _a;
                     var joinIdx = cache.get(v[field]);
-                    return __assign({}, v, (_a = {}, _a[asName || field] = joins[joinIdx] || null, _a));
+                    return __assign(__assign({}, v), (_a = {}, _a[asName || field] = joins[joinIdx] || null, _a));
                 });
             }));
         });
@@ -108,10 +108,10 @@ exports.docJoin = function (afs, paths) {
                 // Reduce them to a single object based on the parent's keys
                 var joins = keys.reduce(function (acc, cur, idx) {
                     var _a;
-                    return __assign({}, acc, (_a = {}, _a[cur] = arr[idx], _a));
+                    return __assign(__assign({}, acc), (_a = {}, _a[cur] = arr[idx], _a));
                 }, {});
                 // Return the parent doc with the joined objects
-                return __assign({}, parent, joins);
+                return __assign(__assign({}, parent), joins);
             }));
         });
     };

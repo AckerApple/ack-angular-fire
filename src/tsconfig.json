@@ -21,7 +21,10 @@
   },
   "exclude": ["node_modules"],
   "angularCompilerOptions": {
+    "enableIvy": false,
     "skipMetadataEmit" : false,
-    "skipTemplateCodegen" : true
+    "skipTemplateCodegen" : true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }

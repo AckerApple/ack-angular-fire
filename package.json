@@ -46,7 +46,7 @@
     "@types/jasmine": "^3.5.10",
     "ack-pug-bundler": "^1.4.7",
     "jasmine": "^3.5.0",
-    "karma": "^5.0.7",
+    "karma": "^5.0.9",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage-istanbul-reporter": "^3.0.2",
     "karma-jasmine": "^3.1.1",
@@ -60,7 +60,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5",
     "ts-helpers": "^1.1.2",
-    "typescript": "3.9.2",
+    "typescript": "3.8.2",
     "zone.js": "~0.10.3"
   },
   "private": true,
@@ -69,8 +69,8 @@
     "@angular/fire": "^6.0.0",
     "@angular/forms": "^9.1.7",
     "@angular/router": "^9.1.7",
-    "ack-angular": "^1.13.15",
-    "ack-angular-fx": "^3.0.4",
+    "ack-angular": "git+https://github.com/ackerapple/ack-angular.git",
+    "ack-angular-fx": "^4.0.2",
     "firebase": "^7.14.4"
   }
 }

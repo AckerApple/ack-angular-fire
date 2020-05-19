@@ -33,6 +33,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
   }
 
   logoutNow(){
-    this.AngularFireAuth.auth.signOut();
+    this.AngularFireAuth.signOut();
   }
 }

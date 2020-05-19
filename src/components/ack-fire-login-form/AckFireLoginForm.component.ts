@@ -62,13 +62,13 @@ interface localUser extends user{
   }
 
   googleSignIn(){
-    const Auth = this.AngularFireAuth.auth
+    const Auth = this.AngularFireAuth;
     Auth.signInWithPopup(
       new auth.GoogleAuthProvider()
     )
   }
 
   loginUser(email:string, password:string):Promise<any>{
-    return this.AngularFireAuth.auth.signInWithEmailAndPassword(this.email, password)
+    return this.AngularFireAuth.signInWithEmailAndPassword(this.email, password)
   }
 }
