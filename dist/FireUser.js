@@ -13,11 +13,12 @@ var Subscription_1 = require("rxjs/internal/Subscription");
 var core_1 = require("@angular/core");
 var auth_1 = require("@angular/fire/auth");
 var FireUser = /** @class */ (function () {
-    function FireUser(AngularFireAuth) {
-        this.AngularFireAuth = AngularFireAuth;
+    function FireUser(angularFireAuth) {
+        this.angularFireAuth = angularFireAuth;
         this.logout = new core_1.EventEmitter();
         this.login = new core_1.EventEmitter();
         this.subs = new Subscription_1.Subscription();
+        console.log("33");
         this.monitorFirebase();
     }
     FireUser.prototype.ngOnDestroy = function () {
@@ -25,7 +26,7 @@ var FireUser = /** @class */ (function () {
     };
     FireUser.prototype.monitorFirebase = function () {
         var _this = this;
-        this.subs.add(this.AngularFireAuth.authState.subscribe(function (user) {
+        this.subs.add(this.angularFireAuth.authState.subscribe(function (user) {
             if (!user) {
                 delete _this.user;
                 _this.logout.emit();
@@ -37,7 +38,7 @@ var FireUser = /** @class */ (function () {
     };
     FireUser.prototype.logoutNow = function () {
         delete this.user;
-        this.AngularFireAuth.signOut();
+        this.angularFireAuth.signOut();
     };
     FireUser = __decorate([
         core_1.Injectable(),

@@ -23,6 +23,7 @@ var FirebaseApp = /** @class */ (function () {
         this.db = db;
         this.userCollection = "users";
         this.subs = new Subscription_1.Subscription();
+        console.log("22");
         this.monitorFirebase();
     }
     FirebaseApp.prototype.ngOnDestroy = function () {

@@ -11,8 +11,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
   private subs: Subscription = new Subscription()
 
   constructor(
-    public AngularFireAuth:AngularFireAuth
+    public angularFireAuth: AngularFireAuth
   ){
+    console.log("33");
     this.monitorFirebase()
   }
 
@@ -22,7 +23,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
   private monitorFirebase(): void{
     this.subs.add(
-      this.AngularFireAuth.authState.subscribe((user: User | null)=>{
+      this.angularFireAuth.authState.subscribe((user: User | null)=>{
         if( !user ){
           delete this.user;
           this.logout.emit();
@@ -37,6 +38,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
   logoutNow(){
     delete this.user;
-    this.AngularFireAuth.signOut();
+    this.angularFireAuth.signOut();
   }
 }

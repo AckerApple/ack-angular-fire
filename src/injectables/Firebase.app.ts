@@ -20,6 +20,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
     public AngularFireAuth:AngularFireAuth,
     public db: AngularFirestore
   ){
+    console.log("22");
     this.monitorFirebase()
   }
 
