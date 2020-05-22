@@ -13,6 +13,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
   constructor(
     public angularFireAuth: AngularFireAuth
   ){
+    console.log("33");
     this.monitorFirebase()
   }
 

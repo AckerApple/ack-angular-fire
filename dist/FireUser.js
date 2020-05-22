@@ -18,7 +18,6 @@ var FireUser = /** @class */ (function () {
         this.logout = new core_1.EventEmitter();
         this.login = new core_1.EventEmitter();
         this.subs = new Subscription_1.Subscription();
-        console.log("33");
         this.monitorFirebase();
     }
     FireUser.prototype.ngOnDestroy = function () {

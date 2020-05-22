@@ -78,7 +78,9 @@ var FirebaseApp = /** @class */ (function () {
         delete this.user;
     };
     FirebaseApp.prototype.logout = function () {
-        this.AngularFireAuth.signOut();
+        // support old and new formats
+        var auth = this.AngularFireAuth.auth || this.AngularFireAuth;
+        auth.signOut();
         this.clearLocalUser();
     };
     FirebaseApp = __decorate([
