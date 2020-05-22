@@ -37,7 +37,9 @@ var FireUser = /** @class */ (function () {
     };
     FireUser.prototype.logoutNow = function () {
         delete this.user;
-        this.angularFireAuth.signOut();
+        // support old and new versions
+        var auth = this.angularFireAuth.auth || this.angularFireAuth;
+        auth.signOut();
     };
     FireUser = __decorate([
         core_1.Injectable(),
