@@ -70,7 +70,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^9.1.7",
-    "@angular/fire": "^5.4.2",
+    "@angular/fire": "^6.0.0",
     "@angular/forms": "^9.1.7",
     "@angular/router": "^9.1.7",
     "ack-angular": "git+https://github.com/ackerapple/ack-angular.git",
