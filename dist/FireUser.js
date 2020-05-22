@@ -27,13 +27,16 @@ var FireUser = /** @class */ (function () {
         var _this = this;
         this.subs.add(this.AngularFireAuth.authState.subscribe(function (user) {
             if (!user) {
+                delete _this.user;
                 _this.logout.emit();
                 return;
             }
+            _this.user = user;
             _this.login.emit(user);
         }));
     };
     FireUser.prototype.logoutNow = function () {
+        delete this.user;
         this.AngularFireAuth.signOut();
     };
     FireUser = __decorate([

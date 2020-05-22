@@ -4,6 +4,7 @@ import { User } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable() export class FireUser {
+  user!: User;
   logout: EventEmitter<void> = new EventEmitter()
   login: EventEmitter<User> = new EventEmitter()
 
@@ -23,16 +24,19 @@ import { AngularFireAuth } from '@angular/fire/auth';
     this.subs.add(
       this.AngularFireAuth.authState.subscribe((user: User | null)=>{
         if( !user ){
+          delete this.user;
           this.logout.emit();
           return;
         }
 
+        this.user = user;
         this.login.emit(user as User)
       })
     )
   }
 
   logoutNow(){
+    delete this.user;
     this.AngularFireAuth.signOut();
   }
 }

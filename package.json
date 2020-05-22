@@ -7,11 +7,12 @@
   "scripts": {
     "update:dist": "node scripts/update-dist-package.js",
     "build:dist": "ngc --declaration --project src",
+    "build:dist:cc": "ngcc --tsconfig src/tsconfig.json",
     "test:watch": "ng test",
     "compile:templates": "ack-pug-bundler ./src ./src --outFileExt template.ts --outType ts --oneToOne",
     "watch:templates": "npm run compile:templates -- --watch",
     "watch": "npm-run-all --parallel compile:templates watch:templates watch:js",
-    "build": "npm-run-all -s compile:templates build:dist update:dist",
+    "build": "npm-run-all -s compile:templates build:dist build:dist:cc update:dist",
     "test": "ng test src --browsers PhantomJS --watch=false",
     "save": "git add . && git commit -m \"quick-save\" && git push"
   },

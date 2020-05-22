@@ -1,3 +1,4 @@
+/* DEPRECATED: use firebase-ui */
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { string } from "./ack-fire-login-form.template"
 import { animations } from "ack-angular-fx"
