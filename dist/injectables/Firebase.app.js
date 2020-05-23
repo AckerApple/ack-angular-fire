@@ -23,7 +23,6 @@ var FirebaseApp = /** @class */ (function () {
         this.db = db;
         this.userCollection = "users";
         this.subs = new Subscription_1.Subscription();
-        console.log("22");
         this.monitorFirebase();
     }
     FirebaseApp.prototype.ngOnDestroy = function () {
@@ -78,9 +77,7 @@ var FirebaseApp = /** @class */ (function () {
         delete this.user;
     };
     FirebaseApp.prototype.logout = function () {
-        // support old and new formats
-        var auth = this.AngularFireAuth.auth || this.AngularFireAuth;
-        auth.signOut();
+        this.fireUser.logoutNow();
         this.clearLocalUser();
     };
     FirebaseApp = __decorate([

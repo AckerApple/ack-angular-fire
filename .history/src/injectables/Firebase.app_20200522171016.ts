@@ -90,7 +90,9 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
   }
 
   logout(){
-    this.fireUser.logoutNow();
+    // support old and new formats
+    const auth = (this.AngularFireAuth as any).auth || this.AngularFireAuth;
+    auth.signOut();
     this.clearLocalUser();
   }
 }

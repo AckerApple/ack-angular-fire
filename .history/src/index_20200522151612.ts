@@ -46,7 +46,7 @@ const providers = [FireUser, FirebaseApp];
   ],
   declarations: declarations,
   providers,
-  exports: [FormsModule, ...declarations]
+  exports: [...declarations]
 }) export class Module {
   static forRoot(): ModuleWithProviders {
     return {

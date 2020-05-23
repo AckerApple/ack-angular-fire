@@ -5,7 +5,6 @@ export interface user {
   lastLogin? : number
   photoUrl?  : string
   trusted?   : boolean
-  roles?     : string[]
   //security? : userSecurity
   displayName? : string
 }
