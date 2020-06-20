@@ -64,7 +64,7 @@ var Module = /** @class */ (function () {
             ],
             declarations: declarations,
             providers: providers,
-            exports: __spreadArrays([forms_1.FormsModule], declarations)
+            exports: __spreadArrays([AckModule_1.AckModule, forms_1.FormsModule], declarations)
         })
     ], Module);
     return Module;
