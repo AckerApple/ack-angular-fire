@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { take } from "rxjs/operators";
 
 @Injectable() export class FirebaseApp {
   user!: user;
@@ -31,7 +32,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
     return new Promise((res,rej)=>{
       this.subs.add(
         this.fireUser.login.subscribe((user: any)=>{
-          this.setAuthUser(user).subscribe(()=>res())
+          this.setAuthUser(user).then(res)
         })
       ).add(
         this.fireUser.logout.subscribe((user: any)=>{
@@ -42,7 +43,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
     })
   }
 
-  setAuthUser( user:User ):Observable<any>{
+  setAuthUser( user:User ): Promise<any>{
     this.user = {
       name: user.displayName,// || user.name,
       email: user.email,
@@ -50,18 +51,17 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
       photoUrl: getUserPhotoUrl( user )
     } as user;
 
-    const loadUser = this.loadUser( user.uid )
-
-    loadUser.subscribe((user:user)=>{
+    const loadUser = this.loadUser( user.uid ).pipe( take(1) ).toPromise().then((user:user)=>{
       if( !user ){
         this.createUserBy( this.user )
       }
 
       this.user.photoUrl = this.user.photoUrl || user.photoUrl
-      Object.assign(this.user, user)
+
+      Object.assign(this.user, user);
     })
 
-    return loadUser
+    return loadUser;
   }
 
   getUserCollection(): AngularFirestoreCollection{
@@ -90,9 +90,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
   }
 
   logout(){
-    // support old and new formats
-    const auth = (this.AngularFireAuth as any).auth || this.AngularFireAuth;
-    auth.signOut();
+    this.fireUser.logoutNow();
     this.clearLocalUser();
   }
 }

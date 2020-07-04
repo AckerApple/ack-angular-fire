@@ -15,6 +15,7 @@ var auth_1 = require("@angular/fire/auth");
 var Subscription_1 = require("rxjs/internal/Subscription");
 var storage_1 = require("@angular/fire/storage");
 var firestore_1 = require("@angular/fire/firestore");
+var operators_1 = require("rxjs/operators");
 var FirebaseApp = /** @class */ (function () {
     function FirebaseApp(fireUser, storage, AngularFireAuth, db) {
         this.fireUser = fireUser;
@@ -32,7 +33,7 @@ var FirebaseApp = /** @class */ (function () {
         var _this = this;
         return new Promise(function (res, rej) {
             _this.subs.add(_this.fireUser.login.subscribe(function (user) {
-                _this.setAuthUser(user).subscribe(function () { return res(); });
+                _this.setAuthUser(user).then(res);
             })).add(_this.fireUser.logout.subscribe(function (user) {
                 _this.clearLocalUser();
                 res();
@@ -47,8 +48,7 @@ var FirebaseApp = /** @class */ (function () {
             uid: user.uid,
             photoUrl: getUserPhotoUrl(user)
         };
-        var loadUser = this.loadUser(user.uid);
-        loadUser.subscribe(function (user) {
+        var loadUser = this.loadUser(user.uid).pipe(operators_1.take(1)).toPromise().then(function (user) {
             if (!user) {
                 _this.createUserBy(_this.user);
             }
