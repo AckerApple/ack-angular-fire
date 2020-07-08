@@ -37,7 +37,7 @@ import { take } from "rxjs/operators";
     return new Promise((res,rej)=>{
       this.subs.add(
         this.fireUser.login.subscribe((user: any)=>{
-          this.setAuthUser(user).pipe( take(1)).toPromise().then(() => res())
+          this.setAuthUser(user).pipe( take(1)).toPromise().then(res)
         })
       ).add(
         this.fireUser.logout.subscribe((user: any)=>{

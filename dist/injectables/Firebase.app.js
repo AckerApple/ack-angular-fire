@@ -36,7 +36,7 @@ var FirebaseApp = /** @class */ (function () {
         var _this = this;
         return new Promise(function (res, rej) {
             _this.subs.add(_this.fireUser.login.subscribe(function (user) {
-                _this.setAuthUser(user).pipe(operators_1.take(1)).toPromise().then(res);
+                _this.setAuthUser(user).pipe(operators_1.take(1)).toPromise().then(function () { return res(); });
             })).add(_this.fireUser.logout.subscribe(function (user) {
                 _this.clearLocalUser();
                 res();
