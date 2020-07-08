@@ -28,12 +28,15 @@ var FirebaseApp = /** @class */ (function () {
     }
     FirebaseApp.prototype.ngOnDestroy = function () {
         this.subs.unsubscribe();
+        if (this.userSub) {
+            this.userSub.unsubscribe();
+        }
     };
     FirebaseApp.prototype.monitorFirebase = function () {
         var _this = this;
         return new Promise(function (res, rej) {
             _this.subs.add(_this.fireUser.login.subscribe(function (user) {
-                _this.setAuthUser(user).then(res);
+                _this.setAuthUser(user).pipe(operators_1.take(1)).toPromise().then(res);
             })).add(_this.fireUser.logout.subscribe(function (user) {
                 _this.clearLocalUser();
                 res();
@@ -48,14 +51,18 @@ var FirebaseApp = /** @class */ (function () {
             uid: user.uid,
             photoUrl: getUserPhotoUrl(user)
         };
-        var loadUser = this.loadUser(user.uid).pipe(operators_1.take(1)).toPromise().then(function (user) {
+        if (this.userSub) {
+            this.userSub.unsubscribe();
+        }
+        var userObservable = this.loadUser(user.uid);
+        this.userSub = userObservable.subscribe(function (user) {
             if (!user) {
                 _this.createUserBy(_this.user);
             }
             _this.user.photoUrl = _this.user.photoUrl || user.photoUrl;
             Object.assign(_this.user, user);
         });
-        return loadUser;
+        return userObservable;
     };
     FirebaseApp.prototype.getUserCollection = function () {
         return this.db.collection(this.userCollection);

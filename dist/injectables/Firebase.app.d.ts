@@ -13,11 +13,12 @@ export declare class FirebaseApp {
     db: AngularFirestore;
     user: user;
     userCollection: string;
+    userSub: Subscription;
     subs: Subscription;
     constructor(fireUser: FireUser, storage: AngularFireStorage, AngularFireAuth: AngularFireAuth, db: AngularFirestore);
     ngOnDestroy(): void;
     monitorFirebase(): Promise<void>;
-    setAuthUser(user: User): Promise<any>;
+    setAuthUser(user: User): Observable<void>;
     getUserCollection(): AngularFirestoreCollection;
     createUserBy(user: User | user): Promise<any>;
     loadUser(uid: string): Observable<any>;

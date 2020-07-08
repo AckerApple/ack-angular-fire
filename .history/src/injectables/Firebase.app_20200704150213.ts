@@ -13,8 +13,7 @@ import { take } from "rxjs/operators";
   user!: user;
   userCollection = "users";
 
-  userSub!: Subscription;
-  subs: Subscription = new Subscription();
+  subs: Subscription = new Subscription()
 
   constructor(
     public fireUser: FireUser,
@@ -27,17 +26,13 @@ import { take } from "rxjs/operators";
 
   ngOnDestroy() {
     this.subs.unsubscribe();
-
-    if (this.userSub) {
-      this.userSub.unsubscribe();
-    }
   }
 
   monitorFirebase(): Promise<void>{
     return new Promise((res,rej)=>{
       this.subs.add(
         this.fireUser.login.subscribe((user: any)=>{
-          this.setAuthUser(user).pipe( take(1)).toPromise().then(res)
+          this.setAuthUser(user).then(res)
         })
       ).add(
         this.fireUser.logout.subscribe((user: any)=>{
@@ -48,7 +43,7 @@ import { take } from "rxjs/operators";
     })
   }
 
-  setAuthUser( user:User ): Observable<void> {
+  setAuthUser( user:User ): Promise<any>{
     this.user = {
       name: user.displayName,// || user.name,
       email: user.email,
@@ -56,13 +51,7 @@ import { take } from "rxjs/operators";
       photoUrl: getUserPhotoUrl( user )
     } as user;
 
-    if (this.userSub) {
-      this.userSub.unsubscribe();
-    }
-
-    const userObservable = this.loadUser( user.uid );
-
-    this.userSub = userObservable.subscribe((user: user) => {
+    const loadUser = this.loadUser( user.uid ).pipe( take(1) ).toPromise().then((user:user)=>{
       if( !user ){
         this.createUserBy( this.user )
       }
@@ -70,9 +59,9 @@ import { take } from "rxjs/operators";
       this.user.photoUrl = this.user.photoUrl || user.photoUrl
 
       Object.assign(this.user, user);
-    });
+    })
 
-    return userObservable;
+    return loadUser;
   }
 
   getUserCollection(): AngularFirestoreCollection{

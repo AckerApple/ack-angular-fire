@@ -37,7 +37,7 @@ import { take } from "rxjs/operators";
     return new Promise((res,rej)=>{
       this.subs.add(
         this.fireUser.login.subscribe((user: any)=>{
-          this.setAuthUser(user).pipe( take(1)).toPromise().then(res)
+          this.setAuthUser(user).then(res)
         })
       ).add(
         this.fireUser.logout.subscribe((user: any)=>{
@@ -48,7 +48,7 @@ import { take } from "rxjs/operators";
     })
   }
 
-  setAuthUser( user:User ): Observable<void> {
+  setAuthUser( user:User ): void{
     this.user = {
       name: user.displayName,// || user.name,
       email: user.email,
@@ -60,9 +60,7 @@ import { take } from "rxjs/operators";
       this.userSub.unsubscribe();
     }
 
-    const userObservable = this.loadUser( user.uid );
-
-    this.userSub = userObservable.subscribe((user: user) => {
+    this.userSub = this.loadUser( user.uid ).subscribe((user: user) => {
       if( !user ){
         this.createUserBy( this.user )
       }
@@ -71,8 +69,6 @@ import { take } from "rxjs/operators";
 
       Object.assign(this.user, user);
     });
-
-    return userObservable;
   }
 
   getUserCollection(): AngularFirestoreCollection{
