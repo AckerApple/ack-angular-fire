@@ -9,5 +9,6 @@ import { AngularFireStorage } from '@angular/fire/storage';
 
   transform(path: string) {
     return this.storage.ref(path).getDownloadURL();
+    /*.toPromise().catch(e=>path)*/
   }
 }

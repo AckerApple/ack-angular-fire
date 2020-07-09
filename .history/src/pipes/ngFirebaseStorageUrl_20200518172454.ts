@@ -8,6 +8,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
   constructor(public storage:AngularFireStorage){}
 
   transform(path: string) {
-    return this.storage.ref(path).getDownloadURL();
+    return this.storage.ref(path).getDownloadURL()
+    .toPromise()
+    .catch(e=>path)
   }
 }

@@ -17,9 +17,7 @@ var AngularFirestoreStorageUrl = /** @class */ (function () {
         this.storage = storage;
     }
     AngularFirestoreStorageUrl.prototype.transform = function (path) {
-        return this.storage.ref(path).getDownloadURL()
-            .toPromise()
-            .catch(function (e) { return path; });
+        return this.storage.ref(path).getDownloadURL();
     };
     AngularFirestoreStorageUrl = __decorate([
         core_1.Pipe({
