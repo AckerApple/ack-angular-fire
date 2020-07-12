@@ -39,6 +39,9 @@ var FirebaseApp = /** @class */ (function () {
         })).add(this.fireUser.logout.subscribe(function (user) {
             _this.clearLocalUser();
         }));
+        if (this.fireUser.user) {
+            this.setAuthUser(this.fireUser.user);
+        }
     };
     FirebaseApp.prototype.setAuthUser = function (user) {
         var _this = this;
