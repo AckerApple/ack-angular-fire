@@ -17,7 +17,7 @@ export declare class FirebaseApp {
     subs: Subscription;
     constructor(fireUser: FireUser, storage: AngularFireStorage, AngularFireAuth: AngularFireAuth, db: AngularFirestore);
     ngOnDestroy(): void;
-    monitorFirebase(): Promise<void>;
+    monitorFirebase(): void;
     setAuthUser(user: User): Observable<user>;
     getUserCollection(): AngularFirestoreCollection;
     createUserBy(user: User | user): Promise<any>;

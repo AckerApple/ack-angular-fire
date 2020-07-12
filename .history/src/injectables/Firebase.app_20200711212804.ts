@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-// import { take } from "rxjs/operators";
+import { take } from "rxjs/operators";
 
 @Injectable() export class FirebaseApp {
   user!: user;
