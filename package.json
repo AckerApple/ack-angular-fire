@@ -62,7 +62,7 @@
     "pug-cli": "^1.0.0-alpha6",
     "pug-loader": "^2.4.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.5",
+    "rxjs": "^6.6.0",
     "ts-helpers": "^1.1.2",
     "typescript": "3.8.2",
     "zone.js": "~0.10.3"

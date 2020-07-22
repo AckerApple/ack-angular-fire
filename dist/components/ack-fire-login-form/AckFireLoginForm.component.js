@@ -51,11 +51,11 @@ var AckFireLoginForm = /** @class */ (function () {
         });
     };
     AckFireLoginForm.prototype.googleSignIn = function () {
-        var Auth = this.AngularFireAuth;
+        var Auth = this.AngularFireAuth.auth;
         Auth.signInWithPopup(new app_1.auth.GoogleAuthProvider());
     };
     AckFireLoginForm.prototype.loginUser = function (email, password) {
-        return this.AngularFireAuth.signInWithEmailAndPassword(this.email, password);
+        return this.AngularFireAuth.auth.signInWithEmailAndPassword(this.email, password);
     };
     __decorate([
         core_1.Input(),

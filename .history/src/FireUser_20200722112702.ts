@@ -25,7 +25,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
       // if already logged in, does not wait for internet
       this.angularFireAuth.user.subscribe((user: User | null) => {
         if (user) {
-          this.user = this.angularFireAuth.auth.currentUser as User;
+          this.user = this.angularFireAuth.auth.currentUser;
         }
       })
     ).add(
