@@ -8,40 +8,37 @@ table.height-full.width-full.bg-fade(
   tbody
     tr
       td
+        //- height maintainer for pos-fixed
+        .invisible
+          ng-container(*ngTemplateOutlet="headerPrepend")
+        
         ng-container(#routeData="var" "[var]"="ActivatedRoute.firstChild?.routeConfig?.data")
 
-        //- title bar
-        ng-container(
+        //-title bar
+        .top-0.pos-fixed.bg-positive.text-white.width-full.border-bottom.border-grey-2x(
           *ngIf="routeData.var?.titleBar==null || routeData.var?.titleBar"
+          "[@slideInDown]" = "1"
+          "[@slideOutUp]" = "1"
+          style="z-index:2"
+          "[ngClass]" = "routeData.var?.titleClass || 'bg-positive'"
         )
-          //- height maintainer for pos-fixed
-          .invisible
-            ng-container(*ngTemplateOutlet="headerPrepend")
+          ng-container(*ngTemplateOutlet="headerPrepend")
 
-          //- fixed floating header
-          .top-0.pos-fixed.bg-positive.text-white.width-full.border-bottom.border-grey-2x(
-            "[@slideInDown]" = "1"
-            "[@slideOutUp]" = "1"
-            style="z-index:2"
-            "[ngClass]" = "routeData.var?.titleClass || 'bg-positive'"
-          )
-            ng-container(*ngTemplateOutlet="headerPrepend")
+          ng-container(*ngTemplateOutlet="header")
 
-            ng-container(*ngTemplateOutlet="header")
+          ng-container(*ngIf="!header")
+            .flex-valign-center.pad-right.pad-left.height-50
+              a.pos-abs(
+                *ngIf="showBack"
+                "[routerLink]"="RouteHistory.back || '../'"
+              )
+                i.fas.fa-chevron-left.fa-lg.text-white
+              .flex-1.text-center.pad-h-3x.text-3x.text-overflow
+                i("[ngClass]"="router.activated?.routeConfig?.data?.icon")
+                |&nbsp;{{ router.activated?.routeConfig?.data?.title }}
+              ng-container(*ngTemplateOutlet="headerAppend")
 
-            ng-container(*ngIf="!header")
-              .flex-valign-center.pad-right.pad-left.height-50
-                a.pos-abs(
-                  *ngIf="showBack"
-                  "[routerLink]"="RouteHistory.back || '../'"
-                )
-                  i.fas.fa-chevron-left.fa-lg.text-white
-                .flex-1.text-center.pad-h-3x.text-3x.text-overflow
-                  i("[ngClass]"="router.activated?.routeConfig?.data?.icon")
-                  |&nbsp;{{ router.activated?.routeConfig?.data?.title }}
-                ng-container(*ngTemplateOutlet="headerAppend")
-
-          .height-50
+        .height-50
     fx-tracker(
       #fx = ""
       "[activatedRoute]" = "fx.loaded && outlet['activated'] ? outlet.activatedRoute : null"

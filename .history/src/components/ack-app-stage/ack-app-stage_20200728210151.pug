@@ -8,17 +8,16 @@ table.height-full.width-full.bg-fade(
   tbody
     tr
       td
+        //- height maintainer for pos-fixed
+        .invisible
+          ng-container(*ngTemplateOutlet="headerPrepend")
+
         ng-container(#routeData="var" "[var]"="ActivatedRoute.firstChild?.routeConfig?.data")
 
-        //- title bar
+        //-title bar
         ng-container(
           *ngIf="routeData.var?.titleBar==null || routeData.var?.titleBar"
         )
-          //- height maintainer for pos-fixed
-          .invisible
-            ng-container(*ngTemplateOutlet="headerPrepend")
-
-          //- fixed floating header
           .top-0.pos-fixed.bg-positive.text-white.width-full.border-bottom.border-grey-2x(
             "[@slideInDown]" = "1"
             "[@slideOutUp]" = "1"
