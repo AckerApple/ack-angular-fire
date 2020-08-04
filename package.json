@@ -73,7 +73,7 @@
     "@angular/fire": "^6.0.2",
     "@angular/forms": "^9.1.7",
     "@angular/router": "^9.1.7",
-    "ack-angular": "git+https://github.com/ackerapple/ack-angular.git",
+    "ack-angular": "^1.14.0",
     "ack-angular-fx": "^4.1.0",
     "firebase": "^7.17.1"
   }
