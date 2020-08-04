@@ -4,7 +4,7 @@ import { User } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable() export class FireUser {
-  user!: User;
+  user!: User | null;
   logout: EventEmitter<void> = new EventEmitter()
   login: EventEmitter<User> = new EventEmitter()
 
@@ -24,9 +24,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
     this.subs.add(
       // if already logged in, does not wait for internet
       this.angularFireAuth.user.subscribe((user: User | null) => {
-        if (user) {
-          this.user = this.angularFireAuth.auth.currentUser as User;
-        }
+          this.user = user;
       })
     ).add(
       // waits for internet

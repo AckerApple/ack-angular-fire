@@ -28,9 +28,7 @@ var FireUser = /** @class */ (function () {
         this.subs.add(
         // if already logged in, does not wait for internet
         this.angularFireAuth.user.subscribe(function (user) {
-            if (user) {
-                _this.user = _this.angularFireAuth.auth.currentUser;
-            }
+            _this.user = user;
         })).add(
         // waits for internet
         this.angularFireAuth.authState.subscribe(function (user) {
