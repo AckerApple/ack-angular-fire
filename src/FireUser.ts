@@ -4,9 +4,9 @@ import { User } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable() export class FireUser {
-  user?: User;
+  user?: User | null; // firebase is typed this way
   logout: EventEmitter<void> = new EventEmitter()
-  login: EventEmitter<User> = new EventEmitter()
+  login: EventEmitter<User | null> = new EventEmitter()
 
   private subs: Subscription = new Subscription()
 
@@ -23,9 +23,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
   private monitorFirebase(): void{
     this.subs.add(
       // if already logged in, does not wait for internet
-      this.angularFireAuth.user.subscribe((user?: User | null) => {
-          this.user = user as User;
-          this.login.emit(user as User); // added 10-29
+      this.angularFireAuth.user.subscribe((user: User | null) => {
+          this.user = user;
+          this.login.emit(user); // added 10-29
       })
     ).add(
       // waits for internet

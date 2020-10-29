@@ -36,8 +36,10 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 
   monitorFirebase(): void {
     this.subs.add(
-      this.fireUser.login.subscribe((user: any) => {
-        this.setAuthUser(user);
+      this.fireUser.login.subscribe((user: User | null) => {
+        if (user) {
+          this.setAuthUser(user);
+        }
       })
     ).add(
       this.fireUser.logout.subscribe((user: any) => {
