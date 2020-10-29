@@ -51,7 +51,7 @@ interface localUser extends user{
       this.email,
       this.user.password
     )
-    .then(res=>{
+    .then(res=>{      
       --this.loadCount
       this.rejectCount = 0
       this.success.emit()
@@ -63,7 +63,8 @@ interface localUser extends user{
   }
 
   googleSignIn(){
-    this.AngularFireAuth.signInWithPopup(
+    const Auth = this.AngularFireAuth;
+    Auth.signInWithPopup(
       new auth.GoogleAuthProvider()
     )
   }

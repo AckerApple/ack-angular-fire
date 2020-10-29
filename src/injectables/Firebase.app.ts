@@ -18,10 +18,10 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 
   constructor(
     public fireUser: FireUser,
-    public storage:AngularFireStorage,
-    public AngularFireAuth:AngularFireAuth,
+    public storage: AngularFireStorage,
+    public AngularFireAuth: AngularFireAuth,
     public db: AngularFirestore
-  ){
+  ) {
     this.monitorFirebase()
   }
 
@@ -34,39 +34,39 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
   }
 
   monitorFirebase(): void {
-      this.subs.add(
-        this.fireUser.login.subscribe((user: any)=>{
-          this.setAuthUser(user);
-        })
-      ).add(
-        this.fireUser.logout.subscribe((user: any)=>{
-          this.clearLocalUser();
-        })
-      );
+    this.subs.add(
+      this.fireUser.login.subscribe((user: any) => {
+        this.setAuthUser(user);
+      })
+    ).add(
+      this.fireUser.logout.subscribe((user: any) => {
+        this.clearLocalUser();
+      })
+    );
 
-      if (this.fireUser.user) {
-        this.setAuthUser(this.fireUser.user);
-      }
+    if (this.fireUser.user) {
+      this.setAuthUser(this.fireUser.user);
+    }
   }
 
-  setAuthUser( user:User ): Observable<user> {
+  setAuthUser(user: User): Observable<user> {
     this.user = {
       displayName: user.displayName,
       name: user.displayName,// should deprecate? (duplicate of displayName)
       email: user.email,
-      uid:user.uid,
-      photoUrl: getUserPhotoUrl( user )
+      uid: user.uid,
+      photoUrl: getUserPhotoUrl(user)
     } as user;
 
     if (this.userSub) {
       this.userSub.unsubscribe();
     }
 
-    const userObservable = this.loadUser( user.uid );
+    const userObservable = this.loadUser(user.uid);
 
     this.userSub = userObservable.subscribe((user: user) => {
-      if( !user ){
-        this.createUserBy( this.user )
+      if (!user) {
+        this.createUserBy(this.user)
       }
 
       this.user.photoUrl = this.user.photoUrl || user.photoUrl
@@ -77,41 +77,41 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
     return userObservable;
   }
 
-  getUserCollection(): AngularFirestoreCollection{
+  getUserCollection(): AngularFirestoreCollection {
     return this.db.collection(this.userCollection);
   }
 
   createUserBy(
     user: User | user
-  ):Promise<any>{
+  ): Promise<any> {
     const sendUser = {
-      name  : user.displayName || (user as user).name || user.email,
-      email : user.email,
-      uid   : user.uid,
-      added : Date.now(),
-      photoUrl : getUserPhotoUrl(user)
+      name: user.displayName || (user as user).name || user.email,
+      email: user.email,
+      uid: user.uid,
+      added: Date.now(),
+      photoUrl: getUserPhotoUrl(user)
     }
-    return this.getUserCollection().doc(user.uid).set( sendUser )
+    return this.getUserCollection().doc(user.uid).set(sendUser)
   }
 
-  loadUser( uid:string ):Observable<any>{
+  loadUser(uid: string): Observable<any> {
     return this.getUserCollection().doc(uid).valueChanges();
   }
 
-  clearLocalUser(){
+  clearLocalUser() {
     delete this.user;
   }
 
-  logout(){
+  logout() {
     this.fireUser.logoutNow();
     this.clearLocalUser();
   }
 }
 
-export function getUserPhotoUrl( user:any ):string{
+export function getUserPhotoUrl(user: any): string {
   const data0 = user.providerData && user.providerData.length && user.providerData[0]
 
-  if( data0 && data0.photoURL ){
+  if (data0 && data0.photoURL) {
     return data0.photoURL
   }
 

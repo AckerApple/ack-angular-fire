@@ -51,8 +51,7 @@ var AckFireLoginForm = /** @class */ (function () {
         });
     };
     AckFireLoginForm.prototype.googleSignIn = function () {
-        var Auth = this.AngularFireAuth;
-        Auth.signInWithPopup(new app_1.auth.GoogleAuthProvider());
+        this.AngularFireAuth.signInWithPopup(new app_1.auth.GoogleAuthProvider());
     };
     AckFireLoginForm.prototype.loginUser = function (email, password) {
         return this.AngularFireAuth.signInWithEmailAndPassword(this.email, password);

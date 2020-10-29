@@ -25,7 +25,13 @@ var FireUser = /** @class */ (function () {
     };
     FireUser.prototype.monitorFirebase = function () {
         var _this = this;
-        this.subs.add(this.angularFireAuth.authState.subscribe(function (user) {
+        this.subs.add(
+        // if already logged in, does not wait for internet
+        this.angularFireAuth.user.subscribe(function (user) {
+            _this.user = user;
+        })).add(
+        // waits for internet
+        this.angularFireAuth.authState.subscribe(function (user) {
             if (!user) {
                 delete _this.user;
                 _this.logout.emit();
