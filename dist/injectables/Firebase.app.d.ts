@@ -1,6 +1,7 @@
 import { user } from "../types";
 import { User } from 'firebase';
 import { FireUser } from "../FireUser";
+import { EventEmitter } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -15,6 +16,7 @@ export declare class FirebaseApp {
     userCollection: string;
     userSub: Subscription;
     subs: Subscription;
+    $login: EventEmitter<user>;
     constructor(fireUser: FireUser, storage: AngularFireStorage, AngularFireAuth: AngularFireAuth, db: AngularFirestore);
     ngOnDestroy(): void;
     monitorFirebase(): void;

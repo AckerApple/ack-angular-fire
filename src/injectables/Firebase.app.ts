@@ -1,7 +1,7 @@
 import { user } from "../types";
 import { User } from 'firebase';
 import { FireUser } from "../FireUser";
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -15,6 +15,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 
   userSub!: Subscription;
   subs: Subscription = new Subscription();
+  $login: EventEmitter<user> = new EventEmitter();
 
   constructor(
     public fireUser: FireUser,
@@ -73,6 +74,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 
       Object.assign(this.user, user);
     });
+
+    this.$login.emit(this.user);
 
     return userObservable;
   }

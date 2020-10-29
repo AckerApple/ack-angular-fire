@@ -24,6 +24,7 @@ var FirebaseApp = /** @class */ (function () {
         this.db = db;
         this.userCollection = "users";
         this.subs = new Subscription_1.Subscription();
+        this.$login = new core_1.EventEmitter();
         this.monitorFirebase();
     }
     FirebaseApp.prototype.ngOnDestroy = function () {
@@ -63,6 +64,7 @@ var FirebaseApp = /** @class */ (function () {
             _this.user.photoUrl = _this.user.photoUrl || user.photoUrl;
             Object.assign(_this.user, user);
         });
+        this.$login.emit(this.user);
         return userObservable;
     };
     FirebaseApp.prototype.getUserCollection = function () {

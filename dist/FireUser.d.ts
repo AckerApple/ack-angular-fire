@@ -3,7 +3,7 @@ import { User } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 export declare class FireUser {
     angularFireAuth: AngularFireAuth;
-    user: User | null;
+    user?: User;
     logout: EventEmitter<void>;
     login: EventEmitter<User>;
     private subs;
