@@ -3,9 +3,9 @@ import { User } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 export declare class FireUser {
     angularFireAuth: AngularFireAuth;
-    user?: User;
+    user?: User | null;
     logout: EventEmitter<void>;
-    login: EventEmitter<User>;
+    login: EventEmitter<User | null>;
     private subs;
     constructor(angularFireAuth: AngularFireAuth);
     ngOnDestroy(): void;

@@ -15,7 +15,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 
   userSub!: Subscription;
   subs: Subscription = new Subscription();
-  $login: EventEmitter<user> = new EventEmitter();
+  public $login: EventEmitter<user> = new EventEmitter();
 
   constructor(
     public fireUser: FireUser,

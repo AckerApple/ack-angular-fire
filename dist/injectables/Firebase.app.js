@@ -36,7 +36,9 @@ var FirebaseApp = /** @class */ (function () {
     FirebaseApp.prototype.monitorFirebase = function () {
         var _this = this;
         this.subs.add(this.fireUser.login.subscribe(function (user) {
-            _this.setAuthUser(user);
+            if (user) {
+                _this.setAuthUser(user);
+            }
         })).add(this.fireUser.logout.subscribe(function (user) {
             _this.clearLocalUser();
         }));
@@ -46,6 +48,9 @@ var FirebaseApp = /** @class */ (function () {
     };
     FirebaseApp.prototype.setAuthUser = function (user) {
         var _this = this;
+        if (!user) {
+            return Promise.resolve();
+        }
         this.user = {
             displayName: user.displayName,
             name: user.displayName,
@@ -65,7 +70,7 @@ var FirebaseApp = /** @class */ (function () {
             Object.assign(_this.user, user);
         });
         this.$login.emit(this.user);
-        return userObservable;
+        return userObservable.toPromise();
     };
     FirebaseApp.prototype.getUserCollection = function () {
         return this.db.collection(this.userCollection);
