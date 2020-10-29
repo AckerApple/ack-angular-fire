@@ -52,7 +52,11 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
     }
   }
 
-  setAuthUser(user: User): Observable<user> {
+  setAuthUser(user: User): Promise<user | void> {
+    if (!user) {
+      return Promise.resolve();
+    }
+
     this.user = {
       displayName: user.displayName,
       name: user.displayName,// should deprecate? (duplicate of displayName)
@@ -79,7 +83,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 
     this.$login.emit(this.user);
 
-    return userObservable;
+    return userObservable.toPromise();
   }
 
   getUserCollection(): AngularFirestoreCollection {
