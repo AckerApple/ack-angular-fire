@@ -51,7 +51,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 
   setAuthUser( user:User ): Observable<user> {
     this.user = {
-      name: user.displayName,// || user.name,
+      displayName: user.displayName,
+      name: user.displayName,// should deprecate? (duplicate of displayName)
       email: user.email,
       uid:user.uid,
       photoUrl: getUserPhotoUrl( user )

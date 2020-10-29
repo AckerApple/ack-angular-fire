@@ -46,6 +46,7 @@ var FirebaseApp = /** @class */ (function () {
     FirebaseApp.prototype.setAuthUser = function (user) {
         var _this = this;
         this.user = {
+            displayName: user.displayName,
             name: user.displayName,
             email: user.email,
             uid: user.uid,

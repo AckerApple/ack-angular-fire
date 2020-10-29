@@ -38,8 +38,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
   logoutNow(){
     delete this.user;
 
+    const oldAuth = (this.angularFireAuth as any).auth
+
     // support old and new versions
-    const auth = (this.angularFireAuth as any).auth || this.angularFireAuth;
+    const auth = oldAuth && oldAuth.signOut ? oldAuth : this.angularFireAuth;
 
     auth.signOut();
   }
